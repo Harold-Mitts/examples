@@ -50,3 +50,50 @@ Get-Team | ForEach-Object {
     } 
 }
 ```
+
+## Alternate output - JSON
+
+You might want to capture the details in a JSON file. You can do this simply - you would modify it to build custom PowerShell objects with the required properties. When dealing with multiple results for an object (like multiple channels in a team), you can structure your output to include an array for those results.
+
+``` powershell
+
+# Create an empty array to hold the team data
+$teamData = @()
+
+# Fetch each team using Get-Team
+Get-Team | ForEach-Object { 
+
+    # Assign team ID to a variable
+    $currentTeamId = $_.GroupId 
+
+    # Fetch the owners and members of the team by their roles
+    $teamOwners = (Get-TeamUser -GroupId $currentTeamId -Role Owner).User
+    $teamMembers = (Get-TeamUser -GroupId $currentTeamId -Role Member).User
+
+    # Create an empty array for the channels
+    $teamChannels = @()
+
+    # Fetch each channel in the current team
+    Get-TeamChannel -GroupId $currentTeamId | ForEach-Object { 
+        # Create a channel object and add it to the channels array
+        $teamChannels += [PSCustomObject] @{
+            ChannelName = $_.DisplayName
+            ChannelType = $_.MembershipType
+        }
+    }
+
+    # Create a team object and add it to the team data array
+    $teamData += [PSCustomObject] @{
+        TeamName = $_.DisplayName
+        TeamId = $currentTeamId
+        Owners = $teamOwners
+        Members = $teamMembers
+        Channels = $teamChannels
+    }
+}
+
+# Convert the team data array to JSON and write it to a file
+$teamData | ConvertTo-Json -Depth 5 | Out-File 'teamData.json'
+
+```
+

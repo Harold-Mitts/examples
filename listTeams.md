@@ -1,21 +1,58 @@
-This PowerShell script is designed to retrieve and display comprehensive data about Microsoft Teams in a tenant, 
-including the names and IDs of teams, their owners, members, and associated channels.
+# Microsoft Teams Administration Scripts
 
-The script is intended for use by system administrators, IT professionals, and other individuals responsible for 
-managing Microsoft Teams environments, especially those overseeing large or complex organizations. By providing 
-detailed insights about each team's structure and users, the script aids in the efficient management and administration 
-of Microsoft Teams. It can be particularly useful during audits, user management tasks, or when a high-level overview 
-of Teams structure is required.
+## Overview
 
-To use the script, one must have the necessary permissions to access Microsoft Teams data in the target tenant, 
-as well as the PowerShell Teams module installed. The output is provided directly to the console for immediate review 
-or further processing.
+These PowerShell scripts are designed to retrieve and display comprehensive data about Microsoft Teams in your tenant. The scripts provide detailed information including:
 
-Ensure that you have the necessary permissions to access Microsoft Teams data within your organization's tenant. You should typically be an administrator to use this script.
+- Team names and IDs
+- Team owners and members  
+- Associated channels for each team
 
-Copy the script into a new .ps1 file. This is easier than attempting to pass an unsigned script. You can author the script in your editor to avoid execution policy.
+## Target Audience
 
-After you have created your script, open Windows Terminal, connect to Microsoft-Teams, and run your script.
+These scripts are intended for:
+- System administrators
+- IT professionals
+- Individuals responsible for managing Microsoft Teams environments
+- Those overseeing large or complex organizations
+
+## Use Cases
+
+The scripts are particularly useful for:
+- **Audits** - Get complete overview of Teams structure
+- **User management** - Review team memberships and ownership
+- **Reporting** - Generate comprehensive Teams data
+- **Administration** - Efficient management of Microsoft Teams environments
+
+## Prerequisites
+
+Before using these scripts, ensure you have:
+
+- **Administrative permissions** to access Microsoft Teams data in your tenant
+- **PowerShell Teams module** installed on your system
+- **Appropriate role assignment** (typically administrator level)
+
+> **⚠️ Important:** You must have the necessary permissions to access Microsoft Teams data within your organization's tenant.
+
+## Getting Started
+
+Follow these steps to set up and run the scripts:
+
+1. **Create the script file**
+   - Copy your chosen script into a new `.ps1` file
+   - This approach is easier than attempting to pass an unsigned script
+   - Author the script in your preferred editor to avoid execution policy issues
+
+2. **Prepare your environment**
+   - Open Windows Terminal
+   - Connect to Microsoft Teams using appropriate PowerShell commands
+
+3. **Execute the script**
+   - Run your saved `.ps1` file
+
+## Script 1: Console Output
+
+This script displays team information directly to the console for immediate review. The output includes team details, user roles, and channel information in a readable format.
 
 ``` powershell
 
@@ -51,9 +88,20 @@ Get-Team | ForEach-Object {
 }
 ```
 
-## Alternate output - JSON
+## Script 2: JSON Output
 
-You might want to capture the details in a JSON file. You can do this simply - you would modify it to build custom PowerShell objects with the required properties. When dealing with multiple results for an object (like multiple channels in a team), you can structure your output to include an array for those results.
+For data persistence and further processing, you might want to capture the team details in a JSON file. This alternative approach:
+
+- **Builds custom PowerShell objects** with the required properties
+- **Structures multiple results** (like multiple channels in a team) as arrays
+- **Exports data to JSON format** for easy integration with other systems
+- **Enables data analysis** and reporting through external tools
+
+This script creates structured data that can be used for:
+- Automated reporting workflows
+- Data analysis and visualization
+- Integration with other management systems
+- Long-term archival of Teams structure
 
 ``` powershell
 

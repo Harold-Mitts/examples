@@ -1,3 +1,3 @@
 # Example code repo
 
-Some example code is shared in this repository. These examples are simply that. They are not solutions and represent just one approach to solving a problem. You should investigate what are the best approaches to solving your problem with approriate experts.
+This repository contains a collection of example code snippets demonstrating various approaches to common programming problems. These examples are intended to illustrate different techniques and should not be considered complete solutions for production use. I encourage you to review each example thoroughly, evaluate its suitability for your specific requirements, and explore alternative methods as needed to identify the best approach for your project.
